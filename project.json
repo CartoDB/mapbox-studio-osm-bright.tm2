@@ -1,0 +1,29 @@
+{
+  "name": "OSM Bright 2",
+  "layers": [
+    "poi",
+    "housenumber",
+    "place",
+    "transportation_name",
+    "water_name",
+    "building",
+    "transportation",
+    "aeroway",
+    "boundary",
+    "park",
+    "landuse",
+    "landcover",
+    "waterway",
+    "water"
+  ],
+  "styles": [
+    "style.mss",
+    "road.mss",
+    "labels.mss"
+  ],
+  "nutiparameters": {
+    "lang": {
+      "default": "en"
+    }
+  }
+}

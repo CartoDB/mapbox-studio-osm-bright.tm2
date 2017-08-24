@@ -96,6 +96,31 @@
   }
 }
 
+  // States / Provices / Subregions
+#place[class='state'][zoom>=4][zoom<=10] {
+  text-name: @name;
+  text-face-name: @sans;
+  text-placement: point;
+  text-fill: @state_text;
+  text-halo-fill: fadeout(lighten(@land,5%),30%);
+  text-halo-radius: 1;
+  text-halo-rasterizer: fast;
+  text-size: 9;
+  [zoom>=5][zoom<=6] {
+    text-size: 12;
+    text-wrap-width: 40;
+  }
+  [zoom>=7][zoom<=8] {
+    text-size: 14;
+    text-wrap-width: 60;
+  }
+  [zoom>=9][zoom<=10] {
+    text-halo-radius: 2;
+    text-size: 16;
+    text-character-spacing: 2;
+    text-wrap-width: 100;
+  }
+}
 
 // ---------------------------------------------------------------------
 // Cities, towns, villages, etc
@@ -105,8 +130,9 @@
 #place::citydots[class='city'][zoom>=4][zoom<=7] {
   // explicitly defining all the `ldir` values wer'e going
   // to use shaves a bit off the final project.xml size
-    shield-file: url("shield/dot.svg");
+    shield-file: url("shield/dot.png");
     shield-unlock-image: true;
+    shield-text-dx: 2;
     shield-name: @name;
     shield-size: 12;
     [zoom=7] { shield-size: 14; }
@@ -129,7 +155,7 @@
   text-halo-rasterizer: fast;
   text-size: 10;
   [class='city'] {
-  	text-face-name: @sans_md;
+    text-face-name: @sans_md;
     text-size: 16;
     [zoom>=10] { 
       text-size: 18;
@@ -140,7 +166,7 @@
       text-wrap-width: 180;
     }
     // Hide at largest scales:
-    [zoom>=16] { text-name: "''"; }
+    [zoom>=16] { text-name: ""; }
   }
   [class='town'] {
     text-size: 14;
@@ -148,7 +174,7 @@
     [zoom>=14] { text-size: 20; }
     [zoom>=16] { text-size: 24; }
     // Hide at largest scales:
-    [zoom>=18] { text-name: "''"; }
+    [zoom>=18] { text-name: ""; }
   }
   [class='village'] {
     text-size: 12;
@@ -187,7 +213,8 @@
     // Not all POIs have a Maki icon assigned, so we limit this section
     // to those that do. See also <https://www.mapbox.com/maki/>
     marker-fill:#666;
-    marker-file:url('icon/[class]-12.svg');
+    marker-file:url('icon/[class]-12.png');
+    marker-width:12;
   }
   ::label {
     text-name: '[name]';
@@ -213,10 +240,10 @@
 #transportation_name::shield-pt[class='motorway'][zoom>=7][zoom<=10][ref_length<=6],
 #transportation_name::shield-pt[class='motorway'][zoom>=9][zoom<=10][ref_length<=6],
 #transportation_name::shield-ln[zoom>=11][reflen<=6] {
-  shield-name: "[ref].replace('·', '\n')";
+  shield-name: "[ref]";
   shield-size: 9;
   shield-line-spacing: -4;
-  shield-file: url('shield/default-[reflen].svg');
+  shield-file: url('shield/motorway_lg_{[ref].length}.png');
   shield-face-name: @sans;
   shield-fill: #333;
   [zoom>=14] {
@@ -236,7 +263,7 @@
   shield-avoid-edges: true;
 }
 
-#transportation_name {
+#transportation_name[zoom>=10] {
   text-name: '[name]';
   text-placement: line;  // text follows line path
   text-face-name: @sans;
@@ -244,8 +271,12 @@
   text-halo-fill: fadeout(#fff, 50%);
   text-halo-radius: 1;
   text-halo-rasterizer: fast;
-  text-size: 12;
+  text-size: 8;
   text-avoid-edges: true;  // prevents clipped labels at tile edges
+  [zoom>=11] { text-size: 9; }
+  [zoom>=12] { text-size: 10; }
+  [zoom>=13] { text-size: 11; }
+  [zoom>=14] { text-size: 12; }
   [zoom>=15] { text-size: 13; }
 }
 
@@ -260,7 +291,7 @@
   [zoom>=17] {
     text-name: @name;
     text-face-name: @sans_it;
-    text-fill: darken(@water, 15);
+    text-fill: darken(@water, 15%);
     text-size: 12;
     text-wrap-width: 100;
     text-wrap-before: true;
