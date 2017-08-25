@@ -130,7 +130,7 @@
 #place::citydots[class='city'][zoom>=4][zoom<=7] {
   // explicitly defining all the `ldir` values wer'e going
   // to use shaves a bit off the final project.xml size
-    shield-file: url("shield/dot.png");
+    shield-file: url("shield/dot.svg");
     shield-unlock-image: true;
     shield-text-dx: 2;
     shield-name: @name;
@@ -213,8 +213,7 @@
     // Not all POIs have a Maki icon assigned, so we limit this section
     // to those that do. See also <https://www.mapbox.com/maki/>
     marker-fill:#666;
-    marker-file:url('icon/[class]-12.png');
-    marker-width:12;
+    marker-file:url('icon/[class]-12.svg');
   }
   ::label {
     text-name: '[name]';
@@ -243,7 +242,7 @@
   shield-name: "[ref]";
   shield-size: 9;
   shield-line-spacing: -4;
-  shield-file: url('shield/motorway_lg_{[ref].length}.png');
+  shield-file: url('shield/default-{[ref].length}.svg');
   shield-face-name: @sans;
   shield-fill: #333;
   [zoom>=14] {
